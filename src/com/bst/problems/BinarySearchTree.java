@@ -3,14 +3,6 @@ package com.bst.problems;
 public class BinarySearchTree<K extends Comparable<K>> {
 	private BinaryNode<K> root;
 
-	public void add(K key) {
-		this.root = this.addRecursively(root, key);
-	}
-
-	public void display() {
-		displayRecursively(root);
-	}
-
 	private BinaryNode addRecursively(BinaryNode<K> current, K key) {
 		if (current == null)
 			return new BinaryNode<>(key);
@@ -23,6 +15,10 @@ public class BinarySearchTree<K extends Comparable<K>> {
 			current.right = this.addRecursively(current.right, key);
 		}
 		return current;
+	}
+
+	public void add(K key) {
+		this.root = this.addRecursively(root, key);
 	}
 
 	private int getSizeRecursively(BinaryNode<K> current) {
@@ -44,7 +40,26 @@ public class BinarySearchTree<K extends Comparable<K>> {
 			System.out.println(temp.key);
 			temp = current.right;
 			System.out.println(temp.key);
-
 		}
+	}
+
+	public void display() {
+		displayRecursively(root);
+	}
+
+	private int searchKeyRecursively(BinaryNode<K> current, K key) {
+		if (current == null)
+			return 0;
+		else if (current.key == key)
+			return 1;
+		else if (key.compareTo(current.key) < 0)
+			return searchKeyRecursively(current.left, key);
+		else if (key.compareTo(current.key) > 0)
+			return searchKeyRecursively(current.right, key);
+		return 0;
+	}
+
+	public int search(K key) {
+		return this.searchKeyRecursively(root, key);
 	}
 }

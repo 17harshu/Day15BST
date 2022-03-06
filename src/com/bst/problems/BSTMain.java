@@ -18,5 +18,11 @@ public class BSTMain {
 		tree.add(67);
 		int size = tree.getSize();
 		System.out.println("Size : " + size);
+
+		Integer res = tree.search(63);
+		if (res == 1)
+			System.out.println("Key found");
+		else
+			System.out.println("Key not found");
 	}
 }
